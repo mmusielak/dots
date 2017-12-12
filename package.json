@@ -1,0 +1,26 @@
+{
+  "name": "dots",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "webpack",
+    "lint": "eslint src -c .eslintrc",
+    "lint:fix": "eslint --fix src",
+    "test": "exit 1"
+  },
+  "author": "Mikolaj Musielak",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-preset-env": "1.6.1",
+    "browser-sync": "2.18.13",
+    "browser-sync-webpack-plugin": "1.2.0",
+    "eslint": "4.13.0",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-compat": "2.1.0",
+    "webpack": "3.10.0"
+  },
+  "browserslist": ["last 2 versions"]
+}
