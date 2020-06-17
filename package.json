@@ -22,5 +22,7 @@
     "eslint-plugin-compat": "2.1.0",
     "webpack": "3.10.0"
   },
-  "browserslist": ["last 2 versions"]
+  "browserslist": [
+    "last 2 versions"
+  ]
 }

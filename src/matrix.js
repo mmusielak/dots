@@ -52,15 +52,15 @@ Matrix3D.prototype.rotate = function (degrees, axis, pivot) {
 
   // cache matrix
 
-  var a11 = this.m11;
-  var a12 = this.m12;
-  var a13 = this.m13;
-  var a14 = this.m14;
-  var a21 = this.m21;
+  //  var a11 = this.m11;
+  //  var a12 = this.m12;
+  //  var a13 = this.m13;
+  //  var a14 = this.m14;
+  //  var a21 = this.m21;
   var a22 = this.m22;
   var a23 = this.m23;
   var a24 = this.m24;
-  var a31 = this.m31;
+  //  var a31 = this.m31;
   var a32 = this.m32;
   var a33 = this.m33;
   var a34 = this.m34;
@@ -137,4 +137,4 @@ Matrix3D.prototype.transformVectors2 = function (vin, vout) {
 
 export {
   Matrix3D
-}
+};

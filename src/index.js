@@ -23,16 +23,16 @@ function onResize() {
 };
 
 onResize();
-*/
-//readCamera();
-readImage("assets/basic.png");
+//*/
+readCamera();
+//readImage("assets/basic.png");
 
 function animationFrame() {
   requestAnimationFrame(animationFrame);
 
   videoContext.clearRect(0, 0, videoCanvas.width, videoCanvas.height);
   (!image) ?
-  videoContext.drawImage(video, 0, 0): videoContext.putImageData(image, 0, 0);
+    videoContext.drawImage(video, 0, 0) : videoContext.putImageData(image, 0, 0);
 
   var videoData = videoContext.getImageData(0, 0, videoCanvas.width, videoCanvas.height);
 
@@ -111,18 +111,21 @@ function readImage(src) {
 }
 
 function readCamera() {
-  navigator.getUserMedia({
+  navigator.mediaDevices.getUserMedia({
     video: {
-      width: 1280,
-      height: 720
-      //width: 640,
-      //height: 320
+      //     width: 1280,
+      //    height: 720
+      width: 640,
+      height: 320
     }
-  }, (stream) => {
-    video.src = window.URL.createObjectURL(stream);
-  }, function (e) {
-    console.warn(e);
-  });
+  })
+    .then((stream) => {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch((e) =>
+      console.warn(e)
+    );
 
   video.addEventListener('loadedmetadata', function () {
     effectCanvas.width = video.videoWidth;
@@ -130,8 +133,8 @@ function readCamera() {
     videoCanvas.width = video.videoWidth;
     videoCanvas.height = video.videoHeight;
 
-    //scaleCanvas(effectContext);
-    //scaleCanvas(videoContext);
+    scaleCanvas(effectContext);
+    scaleCanvas(videoContext);
 
     start();
   });

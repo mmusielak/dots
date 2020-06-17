@@ -8,6 +8,8 @@ var imageData;
 
 var buf;
 var buf8;
+var zbuf;
+var zbuf8;
 var pixels;
 
 function init(context) {
@@ -15,6 +17,9 @@ function init(context) {
 
   buf = new ArrayBuffer(imageData.data.length);
   buf8 = new Uint8ClampedArray(buf);
+  zbuf = new ArrayBuffer(imageData.data.length);
+  zbuf8 = new Uint8ClampedArray(zbuf);
+
   pixels = new Uint32Array(buf);
 }
 

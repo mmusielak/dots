@@ -95,16 +95,16 @@ function onResize() {
 };
 
 onResize();
-*/
-//readCamera();
-readImage("assets/basic.png");
+//*/
+readCamera();
+//readImage("assets/basic.png");
 
 function animationFrame() {
   requestAnimationFrame(animationFrame);
 
   videoContext.clearRect(0, 0, videoCanvas.width, videoCanvas.height);
   (!image) ?
-  videoContext.drawImage(video, 0, 0): videoContext.putImageData(image, 0, 0);
+    videoContext.drawImage(video, 0, 0) : videoContext.putImageData(image, 0, 0);
 
   var videoData = videoContext.getImageData(0, 0, videoCanvas.width, videoCanvas.height);
 
@@ -183,18 +183,21 @@ function readImage(src) {
 }
 
 function readCamera() {
-  navigator.getUserMedia({
+  navigator.mediaDevices.getUserMedia({
     video: {
-      width: 1280,
-      height: 720
-      //width: 640,
-      //height: 320
+      //     width: 1280,
+      //    height: 720
+      width: 640,
+      height: 320
     }
-  }, (stream) => {
-    video.src = window.URL.createObjectURL(stream);
-  }, function (e) {
-    console.warn(e);
-  });
+  })
+    .then((stream) => {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch((e) =>
+      console.warn(e)
+    );
 
   video.addEventListener('loadedmetadata', function () {
     effectCanvas.width = video.videoWidth;
@@ -202,8 +205,8 @@ function readCamera() {
     videoCanvas.width = video.videoWidth;
     videoCanvas.height = video.videoHeight;
 
-    //scaleCanvas(effectContext);
-    //scaleCanvas(videoContext);
+    scaleCanvas(effectContext);
+    scaleCanvas(videoContext);
 
     start();
   });
@@ -310,6 +313,8 @@ var imageData;
 
 var buf;
 var buf8;
+var zbuf;
+var zbuf8;
 var pixels;
 
 function init(context) {
@@ -317,6 +322,9 @@ function init(context) {
 
   buf = new ArrayBuffer(imageData.data.length);
   buf8 = new Uint8ClampedArray(buf);
+  zbuf = new ArrayBuffer(imageData.data.length);
+  zbuf8 = new Uint8ClampedArray(zbuf);
+
   pixels = new Uint32Array(buf);
 }
 
@@ -495,15 +503,15 @@ Matrix3D.prototype.rotate = function (degrees, axis, pivot) {
 
   // cache matrix
 
-  var a11 = this.m11;
-  var a12 = this.m12;
-  var a13 = this.m13;
-  var a14 = this.m14;
-  var a21 = this.m21;
+  //  var a11 = this.m11;
+  //  var a12 = this.m12;
+  //  var a13 = this.m13;
+  //  var a14 = this.m14;
+  //  var a21 = this.m21;
   var a22 = this.m22;
   var a23 = this.m23;
   var a24 = this.m24;
-  var a31 = this.m31;
+  //  var a31 = this.m31;
   var a32 = this.m32;
   var a33 = this.m33;
   var a34 = this.m34;
